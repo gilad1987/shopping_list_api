@@ -50,6 +50,7 @@ export class ShoppingListServer {
 
                 jsonfile.readFile(file, (err: any, db: any) => {
 
+                    console.log('err:readFile',err);
                     if (message.action === 'JOIN') {
                         message.user.socketId = socket.id;
                         db.users.push(message.user);
@@ -88,7 +89,9 @@ export class ShoppingListServer {
                         db: db
                     });
 
-                    jsonfile.writeFile(file, db, (err: any) => {});
+                    jsonfile.writeFile(file, db, (err: any) => {
+                        console.log('err:writeFile',err);
+                    });
                 });
 
             });
