@@ -115,6 +115,10 @@ export class ShoppingListServer {
                 });
                 console.log('Client disconnected');
             });
+
+            socket.on("error", (err)=>{
+                console.error(err.message);
+            })
         });
     }
 
