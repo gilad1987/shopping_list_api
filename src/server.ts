@@ -47,7 +47,7 @@ export class ShoppingListServer {
         this.io.on('connect', (socket: any) => {
             console.log('Connected client on port %s.', this.port);
             socket.on('message', (message: any) => {
-
+                console.log('message',message);
                 jsonfile.readFile(file, (err: any, db: any) => {
 
                     console.log('err:readFile',err);
