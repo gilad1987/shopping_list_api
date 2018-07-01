@@ -5,7 +5,7 @@ import * as socketIo from 'socket.io';
 var jsonfile = require('jsonfile');
 
 export class ShoppingListServer {
-    public  PORT: number = 8080;
+    public static readonly PORT: number = 8080;
     private app: express.Application;
     private server: Server;
     private io: SocketIO.Server;
