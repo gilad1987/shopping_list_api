@@ -44,13 +44,14 @@ export class ShoppingListServer {
 
         const file = 'src/db.json';
 
-        this.io.on('connect', (socket: any) => {
+        this.io.on('connection', (socket: socketIo.Socket) => {
             console.log('Connected client on port %s.', this.port);
             socket.on('message', (message: any) => {
-                console.log('message',message);
+                console.log('message', message);
                 jsonfile.readFile(file, (err: any, db: any) => {
 
-                    console.log('err:readFile',err);
+                    console.log('err:readFile', err);
+
                     if (message.action === 'JOIN') {
                         message.user.socketId = socket.id;
                         db.users.push(message.user);
@@ -90,7 +91,7 @@ export class ShoppingListServer {
                     });
 
                     jsonfile.writeFile(file, db, (err: any) => {
-                        console.log('err:writeFile',err);
+                        console.log('err:writeFile', err);
                     });
                 });
 
@@ -101,7 +102,8 @@ export class ShoppingListServer {
                     const user = db.users.filter((u: any) => (u.socketId === socket.id));
                     const index = db.users.indexOf(user[0]);
                     db.users.splice(index, 1);
-                    jsonfile.writeFile(file, db, (err: any) => {});
+                    jsonfile.writeFile(file, db, (err: any) => {
+                    });
                     this.io.emit('message', {
                         db: db
                     });
