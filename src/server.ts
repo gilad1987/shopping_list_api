@@ -42,7 +42,7 @@ export class ShoppingListServer {
             console.log('Running server on port %s', this.port);
         });
 
-        const file = 'src/db.json';
+        const file = 'db.json';
 
         this.io.on('connection', (socket: socketIo.Socket) => {
             console.log("server nsp->%s", socket.nsp.name);
