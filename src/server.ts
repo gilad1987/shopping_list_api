@@ -101,7 +101,8 @@ export class ShoppingListServer {
 
             socket.on('disconnect', () => {
                 jsonfile.readFile(file, (err: any, db: any) => {
-                    console.log(db);
+                    console.log('db',db);
+                    console.log('err',err);
                     const user = db.users.filter((u: any) => (u.socketId === socket.id));
                     const index = db.users.indexOf(user[0]);
                     db.users.splice(index, 1);
