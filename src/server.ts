@@ -45,6 +45,8 @@ export class ShoppingListServer {
         const file = 'src/db.json';
 
         this.io.on('connection', (socket: socketIo.Socket) => {
+            console.log("server nsp->%s", socket.nsp.name);
+
             console.log('Connected client on port %s.', this.port);
             socket.on('message', (message: any) => {
                 console.log('message', message);
@@ -99,6 +101,7 @@ export class ShoppingListServer {
 
             socket.on('disconnect', () => {
                 jsonfile.readFile(file, (err: any, db: any) => {
+                    console.log(db);
                     const user = db.users.filter((u: any) => (u.socketId === socket.id));
                     const index = db.users.indexOf(user[0]);
                     db.users.splice(index, 1);
