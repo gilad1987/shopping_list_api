@@ -4,7 +4,7 @@ var socketIo = require('socket.io');
 var jsonfile = require('jsonfile');
 var ShoppingListServer = (function () {
     function ShoppingListServer() {
-        this.number = 8080;
+        this.PORT = 8080;
         this.productList = [];
         this.createApp();
         this.config();
@@ -87,7 +87,6 @@ var ShoppingListServer = (function () {
     ShoppingListServer.prototype.getApp = function () {
         return this.app;
     };
-    ShoppingListServer.readonly = PORT;
     return ShoppingListServer;
 })();
 exports.ShoppingListServer = ShoppingListServer;
